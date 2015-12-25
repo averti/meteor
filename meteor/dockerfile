@@ -1,0 +1,10 @@
+FROM centos
+RUN yum install -y gcc-c++ make
+RUN curl --silent --location https://rpm.nodesource.com/setup | bash -
+RUN yum install -y nodejs
+RUN curl https://install.meteor.com | /bin/sh
+WORKDIR /home
+RUN meteor create --example todos
+WORKDIR /home/todos
+RUN meteor add anti:gagarin
+RUN npm install -g gagarin
